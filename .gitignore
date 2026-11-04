@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# SQLite 生成物（用 init_db.py 重建）
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Office 临时/锁文件
+~$*
+*.tmp
+
+# 备份与预览
+*_原始备份.docx
+*_预览*.pdf
+.dsh-office-*/
+
+# 含个人联系方式，不公开
+TeamForming.docx
+
+# 操作系统
+Thumbs.db
+.DS_Store

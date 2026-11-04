@@ -1,0 +1,9 @@
+# 生成物
+demo.db
+demo.db-journal
+demo.db-wal
+demo.db-shm
+
+# Python
+__pycache__/
+*.pyc

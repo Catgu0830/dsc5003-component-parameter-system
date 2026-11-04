@@ -1,0 +1,396 @@
+<mxfile host="app.diagrams.net" agent="gen_er.py">
+  <diagram id="er-v2" name="ER v2">
+    <mxGraphModel dx="1893" dy="1321" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontFamily=Microsoft YaHei;" value="电子元器件参数自动提取查询系统 · 数据库 ER 图（Crow&#39;s Foot）" vertex="1">
+          <mxGeometry height="28" width="800" x="40" y="4" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="users（用户）" vertex="1">
+          <mxGeometry height="178" width="280" x="40" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_body" parent="t_users" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="147" width="278" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_sep" parent="t_users" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r0" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;user_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r1" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;username&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#2d7600&quot;&gt;U&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r2" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;password_hash&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r3" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;role&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r4" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_active&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="280" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r5" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;last_login_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users_r6" parent="t_users" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="280" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_category" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="category（类别）" vertex="1">
+          <mxGeometry height="98" width="230" x="785" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="t_category_body" parent="t_category" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="67" width="228" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_category_sep" parent="t_category" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_category_r0" parent="t_category" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;category_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_category_r1" parent="t_category" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#2d7600&quot;&gt;U&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="230" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_category_r2" parent="t_category" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;description&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="230" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="manufacturer（厂商）" vertex="1">
+          <mxGeometry height="118" width="230" x="1110" y="241" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer_body" parent="t_manufacturer" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="87" width="228" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer_sep" parent="t_manufacturer" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer_r0" parent="t_manufacturer" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;manufacturer_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer_r1" parent="t_manufacturer" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#2d7600&quot;&gt;U&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="230" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer_r2" parent="t_manufacturer" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;short_name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="230" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_manufacturer_r3" parent="t_manufacturer" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;website&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="230" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="component（元器件）" vertex="1">
+          <mxGeometry height="198" width="260" x="770" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_body" parent="t_component" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="167" width="258" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_sep" parent="t_component" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r0" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;component_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r1" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;category_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="260" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r2" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;manufacturer_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="260" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r3" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;model&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="260" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r4" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;package&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="260" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r5" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;description&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="260" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r6" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="260" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_r7" parent="t_component" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;updated_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="260" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="parameter_def（参数定义）" vertex="1">
+          <mxGeometry height="158" width="300" x="840" y="859" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_body" parent="t_parameter_def" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="127" width="298" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_sep" parent="t_parameter_def" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_r0" parent="t_parameter_def" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;parameter_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_r1" parent="t_parameter_def" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;canonical_name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#2d7600&quot;&gt;U&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_r2" parent="t_parameter_def" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;display_name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_r3" parent="t_parameter_def" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;unit&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_r4" parent="t_parameter_def" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;data_type&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_def_r5" parent="t_parameter_def" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;category_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_alias" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="parameter_alias（参数别名）" vertex="1">
+          <mxGeometry height="98" width="260" x="1221" y="889" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_alias_body" parent="t_parameter_alias" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="67" width="258" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_alias_sep" parent="t_parameter_alias" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_alias_r0" parent="t_parameter_alias" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;alias_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_alias_r1" parent="t_parameter_alias" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;parameter_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="260" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_parameter_alias_r2" parent="t_parameter_alias" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;alias&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#2d7600&quot;&gt;U&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="260" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="extraction_task（提取任务）" vertex="1">
+          <mxGeometry height="218" width="300" x="380" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_body" parent="t_extraction_task" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="187" width="298" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_sep" parent="t_extraction_task" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r0" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;task_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r1" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;user_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r2" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;component_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r3" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;source_type&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r4" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;source_location&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r5" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;status&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r6" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;retry_count&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r7" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_task_r8" parent="t_extraction_task" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;finished_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="extraction_param（提取结果）" vertex="1">
+          <mxGeometry height="258" width="300" x="450" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_body" parent="t_extraction_param" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="227" width="298" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_sep" parent="t_extraction_param" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r0" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;extraction_param_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r1" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;task_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r2" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;parameter_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r3" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;raw_name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r4" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;raw_value&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r5" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;value_num&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;REAL&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r6" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;unit&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r7" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;confidence&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;REAL&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r8" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;review_status&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r9" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;review_comment&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="t_extraction_param_r10" parent="t_extraction_param" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;source_page&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="component_parameter（正式参数）" vertex="1">
+          <mxGeometry height="198" width="300" x="820" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_body" parent="t_component_parameter" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="167" width="298" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_sep" parent="t_component_parameter" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r0" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK/FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;component_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r1" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK/FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;parameter_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r2" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;value_num&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;REAL&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r3" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;unit&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r4" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;value_text&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r5" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;source_extraction_param_id&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r6" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_component_parameter_r7" parent="t_component_parameter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;updated_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="audit_log（审核日志）" vertex="1">
+          <mxGeometry height="178" width="300" x="30" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_body" parent="t_audit_log" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="147" width="298" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_sep" parent="t_audit_log" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r0" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;audit_log_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r1" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;extraction_param_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r2" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;auditor_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r3" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;action&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r4" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;comment&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r5" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;detail_json&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_audit_log_r6" parent="t_audit_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;audit_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log" parent="1" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=13;fontFamily=Microsoft YaHei;spacingTop=4;" value="operation_log（操作日志）" vertex="1">
+          <mxGeometry height="198" width="280" x="40" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_body" parent="t_operation_log" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=none;" vertex="1">
+          <mxGeometry height="167" width="278" x="1" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_sep" parent="t_operation_log" style="line;strokeWidth=1;strokeColor=#82b366;html=1;" vertex="1">
+          <mxGeometry height="1" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r0" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;log_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER" vertex="1">
+          <mxGeometry height="20" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r1" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;user_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r2" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;action&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r3" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;target_type&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r4" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;target_id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;INTEGER&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r5" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;detail&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r6" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ip_address&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT&amp;nbsp;&lt;font color=&quot;#d79b00&quot;&gt;?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="280" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="t_operation_log_r7" parent="t_operation_log" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontSize=10;fontFamily=Consolas;strokeColor=none;fillColor=none;" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_time&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TEXT" vertex="1">
+          <mxGeometry height="20" width="280" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_task" edge="1" parent="1" source="t_users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="t_extraction_task" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_audit" edge="1" parent="1" source="t_users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;" target="t_audit_log" value="1 : N">
+          <mxGeometry relative="1" x="-0.0677" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_oplog" edge="1" parent="1" source="t_users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" target="t_operation_log" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_task_param" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="t_extraction_param" value="1 : N">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="660" as="sourcePoint" />
+            <mxPoint x="850" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cp_param" edge="1" parent="1" source="t_component_parameter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="t_extraction_param" value="N : 1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cp_component" edge="1" parent="1" source="t_component_parameter" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" target="t_component">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cp_def" edge="1" parent="1" source="t_component_parameter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0.25;exitY=1;entryX=0.75;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="t_parameter_def" value="N : 1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_param_def" edge="1" parent="1" source="t_extraction_param" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=1.002;exitY=0.864;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="t_parameter_def" value="N : 1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1080" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_def_alias" edge="1" parent="1" source="t_parameter_def" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="t_parameter_alias">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_component_cat" edge="1" parent="1" source="t_component" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="t_category" value="N : 1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_component_mfr" edge="1" parent="1" source="t_component" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="t_manufacturer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_task_component" edge="1" parent="1" source="t_extraction_task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="t_component">
+          <mxGeometry relative="1" x="0.6303" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="420" />
+              <mxPoint x="840" y="420" />
+              <mxPoint x="840" y="398" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_param_audit" edge="1" parent="1" source="t_extraction_param_r4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7f7f7f;strokeWidth=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontSize=9;fontFamily=Consolas;labelBackgroundColor=#ffffff;exitX=0;exitY=0.75;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="t_audit_log">
+          <mxGeometry relative="1" x="-0.2181" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;fontFamily=Microsoft YaHei;" value="&lt;b&gt;图例&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt; 主键　&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt; 外键&lt;br&gt;&lt;b&gt;PK/FK&lt;/b&gt; 复合主键兼外键&lt;br&gt;&lt;font color=&quot;#2d7600&quot;&gt;&lt;b&gt;U&lt;/b&gt;&lt;/font&gt; 唯一　&lt;font color=&quot;#d79b00&quot;&gt;&lt;b&gt;?&lt;/b&gt;&lt;/font&gt; 可空&lt;br&gt;单线 = 1　鸦爪 = N&lt;br&gt;1 : N　关系基数" vertex="1">
+          <mxGeometry height="160" width="260" x="1170" y="469" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=10;fontColor=#666666;fontFamily=Microsoft YaHei;whiteSpace=wrap;" value="注：User 的 ISA 子类（Admin / Auditor / Regular_user）合并为 users.role；原 Parameters 拆分为 extraction_param（待审）与 component_parameter（正式）；审核对象是 extraction_param（参数级），任务进度由视图统计。" vertex="1">
+          <mxGeometry height="26" width="1600" x="31" y="1020" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
