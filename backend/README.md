@@ -77,7 +77,7 @@ $env:DATABASE = "D:\...\Database\db\demo.db"
 - `/api/categories`、`/api/parameters`：类别/参数字典（审核映射用）
 - `/api/components`：查询、筛选、分页、详情；管理员可 POST/PUT/DELETE
 - `/api/components/compare?ids=1,2`
-- `/api/tasks`：手工任务；`/api/tasks/upload`：PDF/CSV/XLSX；CSV/XLSX 每行生成一个任务
+- `/api/tasks`：手工任务；`/api/tasks/batch`：批量手工任务；`/api/tasks/upload`：PDF/CSV/XLSX；CSV/XLSX 每行生成一个任务
 - `/api/tasks/{id}`：详情；`DELETE /api/tasks/{id}`：任务所有者或管理员删除（有审核记录时禁止）
 - `/api/tasks/{id}/retry`、`/source`、`/source/page/{n}`
 - `/api/audit/tasks`：待审任务；`/api/audit/params`：参数级待审列表（含来源/置信度，按置信度升序）
@@ -85,8 +85,10 @@ $env:DATABASE = "D:\...\Database\db\demo.db"
 - `PUT /api/audit/tasks/{id}/identity`：审核员修改 model/manufacturer/category/package
 - `POST /api/audit/params/{extraction_param_id}`：`{"action":"approve|reject","comment":"...","parameter_id":4,"raw_value":"3.3 V","value_num":3.3,"unit":"V"}`
 - `/api/audit/logs`：审核日志
+- `/api/components/{id}/versions`：同一器件最近两次提取的版本差异
+- `/api/components/{id}/similar?limit=5`：同类且共享参数较多的相似器件
 - `/api/manufacturers/{id}`：DELETE（仅管理员；被元器件引用时返回 409）
-- `/api/export/components`、`/api/export/compare`
+- `/api/export/components`、`/api/export/components/{id}`、`/api/export/compare`
 - `/api/search`：数据库搜索，无结果时可转提取任务
 
 ## 审核流程
@@ -107,7 +109,7 @@ $env:DATABASE = "D:\...\Database\db\demo.db"
 - 提取警告会通过任务 API 的 `warnings` 字段返回，审核页会显示。
 - 没有 OCR；扫描 PDF 需先 OCR。
 - PDF 原文候选需要人工映射；自动识别厂商/型号只覆盖部分厂商。
-- 没有保存筛选、相似推荐、详情 PDF 导出。
+- 低优先级已补：保存筛选（前端 localStorage）、版本对比、相似器件推荐、单器件详情 CSV/XLSX/JSON 导出。
 - 旧版 10 表数据库不能直接复用；如存在旧库，请备份后删除，首次启动会建 11 表。
 
 ## 目录

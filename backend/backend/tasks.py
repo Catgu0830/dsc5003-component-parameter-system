@@ -345,6 +345,51 @@ def post_task():
     return ok(serialize_task(row), 202)
 
 
+@bp.post("/batch")
+@login_required()
+def post_batch():
+    """FR-19: create several manual extraction tasks in one request."""
+    data = body()
+    records = data.get("components")
+    if not isinstance(records, list) or not 1 <= len(records) <= 1000:
+        raise APIError("components must be a list of 1-1000 objects")
+    db = get_db()
+    catalog = load_catalog(db)
+    components = []
+    for index, record in enumerate(records, 1):
+        try:
+            component = normalize_component(
+                record,
+                catalog,
+                {"type": "manual", "snippet": "User-supplied structured entry"},
+                False,
+            )
+        except APIError as exc:
+            raise APIError(f"Component {index}: {exc.message}")
+        if not component.get("model") or not component.get("manufacturer") or not component.get("category"):
+            raise APIError(f"Component {index}: model, manufacturer and category are required")
+        components.append(component)
+    with db:
+        tasks = []
+        for component in components:
+            task_id = _insert_task(
+                db,
+                g.user["user_id"],
+                "manual",
+                "manual",
+                None,
+                component,
+                warnings=component.get("warnings"),
+            )
+            tasks.append(
+                serialize_task(
+                    db.execute("SELECT * FROM extraction_task WHERE task_id=?", (task_id,)).fetchone()
+                )
+            )
+        log(db, g.user["user_id"], "create_batch", "task", None, {"count": len(tasks)})
+    return ok({"tasks": tasks, "count": len(tasks)}, 201)
+
+
 @bp.post("/upload")
 @login_required()
 def upload():

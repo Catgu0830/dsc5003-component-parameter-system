@@ -7,7 +7,7 @@ from openpyxl import Workbook
 
 from .auth import login_required
 from .common import APIError
-from .components import comparison, query_components
+from .components import component_access, comparison, query_components, serialize_component
 from .db import get_db, log
 
 bp = Blueprint("exports", __name__, url_prefix="/api/export")
@@ -84,6 +84,14 @@ def export_data(data, compare=False):
 @login_required()
 def components():
     return export_data(query_components(export=True))
+
+
+@bp.get("/components/<int:component_id>")
+@login_required()
+def component_detail(component_id):
+    """FR-46: export one component's parameter detail as a table/JSON."""
+    component = serialize_component(component_access(component_id))
+    return export_data({"items": [component]}, False)
 
 
 @bp.get("/compare")

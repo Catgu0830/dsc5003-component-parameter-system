@@ -326,6 +326,154 @@ def parameters(component_id):
     return ok(serialize_component(component_access(component_id))["parameters"])
 
 
+def _version_parameters(db, task_id):
+    rows = db.execute(
+        "SELECT ep.*,pd.canonical_name,pd.display_name "
+        "FROM extraction_param ep LEFT JOIN parameter_def pd ON pd.parameter_id=ep.parameter_id "
+        "WHERE ep.task_id=? ORDER BY ep.extraction_param_id",
+        (task_id,),
+    )
+    result = {}
+    for row in rows:
+        key = (
+            f"p{row['parameter_id']}"
+            if row["parameter_id"] is not None
+            else f"r{row['raw_name'].casefold()}"
+        )
+        result[key] = {
+            "parameter_id": row["parameter_id"],
+            "canonical_name": row["canonical_name"],
+            "display_name": row["display_name"] or row["raw_name"],
+            "raw_name": row["raw_name"],
+            "raw_value": row["raw_value"],
+            "value_num": row["value_num"],
+            "value_text": row["raw_value"] if row["value_num"] is None else None,
+            "unit": row["unit"],
+            "confidence": row["confidence"],
+            "review_status": row["review_status"],
+        }
+    return result
+
+
+@bp.get("/<int:component_id>/versions")
+@login_required()
+def versions(component_id):
+    """FR-25: compare two extraction tasks (default: latest two)."""
+    component_access(component_id)
+    db = get_db()
+    tasks = db.execute(
+        "SELECT t.* FROM extraction_task t WHERE t.component_id=? AND t.status='success' "
+        "AND EXISTS(SELECT 1 FROM extraction_param ep WHERE ep.task_id=t.task_id) "
+        "ORDER BY t.task_id DESC LIMIT 2",
+        (component_id,),
+    ).fetchall()
+    from_id = request.args.get("from_task")
+    to_id = request.args.get("to_task")
+    if from_id:
+        from_id = integer(from_id, "from_task")
+    if to_id:
+        to_id = integer(to_id, "to_task")
+    if not from_id or not to_id:
+        if len(tasks) < 2:
+            raise APIError("At least two successful extractions are needed for a version comparison", 400)
+        to_id, from_id = tasks[0]["task_id"], tasks[1]["task_id"]
+    if from_id == to_id:
+        raise APIError("from_task and to_task must differ", 400)
+    task_rows = {}
+    for task_id in (from_id, to_id):
+        row = db.execute(
+            "SELECT * FROM extraction_task WHERE task_id=? AND component_id=?",
+            (task_id, component_id),
+        ).fetchone()
+        if row is None:
+            raise APIError("Task does not belong to this component", 404)
+        task_rows[task_id] = row
+    left = _version_parameters(db, from_id)
+    right = _version_parameters(db, to_id)
+    rows = []
+    for key in sorted(set(left) | set(right)):
+        a, b = left.get(key), right.get(key)
+        sample = a or b
+        changed = (
+            (a is None) != (b is None)
+            or (
+                a is not None
+                and b is not None
+                and (a["parameter_id"], a["value_num"], a["value_text"], a["unit"])
+                != (b["parameter_id"], b["value_num"], b["value_text"], b["unit"])
+            )
+        )
+        rows.append(
+            {
+                "parameter_id": sample["parameter_id"],
+                "name": sample["display_name"],
+                "canonical_name": sample["canonical_name"],
+                "from": a,
+                "to": b,
+                "changed": changed,
+            }
+        )
+    return ok(
+        {
+            "component_id": component_id,
+            "from_task": {
+                "task_id": from_id,
+                "source_type": task_rows[from_id]["source_type"],
+                "created_time": task_rows[from_id]["created_time"],
+            },
+            "to_task": {
+                "task_id": to_id,
+                "source_type": task_rows[to_id]["source_type"],
+                "created_time": task_rows[to_id]["created_time"],
+            },
+            "changed_count": sum(1 for row in rows if row["changed"]),
+            "rows": rows,
+        }
+    )
+
+
+@bp.get("/<int:component_id>/similar")
+@login_required()
+def similar(component_id):
+    """FR-43: recommend same-category components sharing key parameters."""
+    target = serialize_component(component_access(component_id))
+    limit = integer(request.args.get("limit", "5"), "limit", 1, 20)
+    db = get_db()
+    candidates = db.execute(
+        "SELECT component_id FROM component WHERE category_id=? AND component_id<>? "
+        "ORDER BY component_id LIMIT 100",
+        (target["category_id"], component_id),
+    ).fetchall()
+    target_params = {p["parameter_id"]: p for p in target["parameters"]}
+    items = []
+    for row in candidates:
+        candidate = serialize_component(component_access(row["component_id"]))
+        candidate_params = {p["parameter_id"]: p for p in candidate["parameters"]}
+        shared = sorted(set(target_params) & set(candidate_params))
+        if not shared:
+            continue
+        closeness = 0.0
+        for parameter_id in shared:
+            a, b = target_params[parameter_id], candidate_params[parameter_id]
+            if a["value_num"] is not None and b["value_num"] is not None:
+                scale = max(abs(a["value_num"]), abs(b["value_num"]), 1e-12)
+                closeness += 1.0 / (1.0 + abs(a["value_num"] - b["value_num"]) / scale)
+        items.append(
+            {
+                "component_id": candidate["component_id"],
+                "model": candidate["model"],
+                "manufacturer": candidate["manufacturer"],
+                "category": candidate["category"],
+                "package": candidate["package"],
+                "score": round(len(shared) + closeness, 3),
+                "shared_parameter_ids": shared,
+                "shared_parameters": [target_params[p]["name"] for p in shared],
+            }
+        )
+    items.sort(key=lambda item: (-item["score"], item["component_id"]))
+    return ok({"component_id": component_id, "items": items[:limit]})
+
+
 @bp.post("/<int:component_id>/parameters")
 @login_required("admin")
 def add_parameters(component_id):
