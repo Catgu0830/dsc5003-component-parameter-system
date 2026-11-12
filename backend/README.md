@@ -43,6 +43,7 @@ RAG_STRICT=0
 ```
 
 `最强RAG` 自己读取 `最强RAG/.env` 或进程环境中的 `DASHSCOPE_API_KEY`。该 `.env` 已被 `.gitignore` 排除，不要提交。
+本仓库只保留了运行 RAG 检索所需的最小源码（`chips_extractor/llm/rag_baseline.py`、Prompt v7、LLM/embedding client 等），没有提交论文面板、`output/` 索引和运行结果。完整实验目录请放在 `RAG_HOME` 指向的位置。
 如果 RAG 目录、Key 或 embedding 服务不可用，后端会回退到原来的 PDF 原文/规则提取；设置 `RAG_STRICT=1` 可以强制失败而不是回退。
 手工程录入和 CSV/XLSX 仍走原有解析逻辑。
 

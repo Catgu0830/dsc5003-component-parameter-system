@@ -23,6 +23,11 @@
 │   ├── css/
 │   ├── js/
 │   └── pages/                           # 7 个业务页面
+├── 最强RAG/                             # PDF/URL 参数提取的 RAG 方法
+│   ├── chips_extractor/llm/             # 混合检索、RRF、rerank、Prompt v7
+│   ├── chips_extractor/settings.py
+│   ├── config.yaml
+│   └── requirements.txt
 ├── Database/
 │   ├── db/                              # SQLite 数据库脚本与验收
 │   │   ├── 00_reset.sql
