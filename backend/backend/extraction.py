@@ -124,25 +124,6 @@ def extract(task, config, catalog):
     warnings = []
     method = source_type
 
-    # 最强RAG: hybrid BM25 + embedding + RRF + LLM rerank + Prompt v7.
-    # PDF/URL use it by default; rules/PDF-verbatim remain as fallback.
-    if (
-        source_type in ("pdf", "url")
-        and config.get("EXTRACTION_ENGINE", "rag") == "rag"
-    ):
-        try:
-            from .rag_extractor import RAGUnavailable, extract_with_rag
-
-            return extract_with_rag(task, config, catalog)
-        except RAGUnavailable as exc:
-            if config.get("RAG_STRICT"):
-                raise APIError(str(exc))
-            warnings.append(f"RAG unavailable ({exc}); using local fallback")
-        except Exception as exc:
-            if config.get("RAG_STRICT"):
-                raise APIError(f"RAG extraction failed: {type(exc).__name__}: {exc}")
-            warnings.append(f"RAG failed ({type(exc).__name__}); using local fallback")
-
     if source_type == "pdf" and config.get("PDF_EXTRACTION_MODE", "verbatim") == "verbatim":
         from .pdf_specs import extract_pdf
 

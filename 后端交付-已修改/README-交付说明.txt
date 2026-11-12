@@ -2,7 +2,6 @@
 ================
 目录：
   backend/    Flask + SQLite（11 表、参数级审核）
-  最强RAG/    PDF/URL 提取所需的最小 RAG 源码
 启动：
   cd backend
   python -m venv .venv
@@ -15,6 +14,5 @@
   $env:DATABASE = "D:\...\Database\db\demo.db"
   .\.venv\Scripts\python.exe run.py
 
-RAG：默认读取同级 最强RAG；也可设置 RAG_HOME。
-DASHSCOPE_API_KEY 请通过环境变量或 最强RAG/.env 提供，交付包不包含真实密钥。
 首次启动会创建 backend/instance/components.sqlite3 和上传目录。
+PDF/URL 使用现有规则/LLM/PDF 原文提取，不包含 RAG。

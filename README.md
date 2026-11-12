@@ -25,11 +25,14 @@
 │   ├── js/
 │   └── pages/                           # dashboard/components/extraction/tasks/
 │                                        # comparison/audit/users/manufacturers/logs
-├── 最强RAG/                             # PDF/URL 参数提取的 RAG 方法
-│   ├── chips_extractor/llm/             # 混合检索、RRF、rerank、Prompt v7
-│   ├── chips_extractor/settings.py
-│   ├── config.yaml
-│   └── requirements.txt
+├── 前端交付-已修改/
+│   ├── frontend/
+│   ├── README-交付说明.txt
+│   └── 前端交付-已修改.zip
+├── 后端交付-已修改/
+│   ├── backend/
+│   ├── README-交付说明.txt
+│   └── 后端交付-已修改.zip
 ├── Database/
 │   ├── db/                              # SQLite 数据库脚本与验收
 │   │   ├── 00_reset.sql
