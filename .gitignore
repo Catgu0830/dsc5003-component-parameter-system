@@ -25,6 +25,11 @@ TeamForming.docx
 # 代码审查/临时解压目录
 _review/
 
+# 最强RAG 的密钥、索引与运行产物不进入仓库
+最强RAG/.env
+最强RAG/output/
+最强RAG/**/__pycache__/
+
 # 操作系统
 Thumbs.db
 .DS_Store

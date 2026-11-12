@@ -37,6 +37,13 @@ def create_app(test_config=None):
             x.strip() for x in os.getenv("URL_ALLOWED_HOSTS", "").split(",") if x.strip()
         ],
         PDF_EXTRACTION_MODE=os.getenv("PDF_EXTRACTION_MODE", "verbatim"),
+        EXTRACTION_ENGINE=os.getenv("EXTRACTION_ENGINE", "rag"),
+        RAG_HOME=os.getenv("RAG_HOME", ""),
+        RAG_STRICT=os.getenv("RAG_STRICT", "0").lower() in ("1", "true", "yes", "on"),
+        RAG_PARAMETER_LIMIT=int(os.getenv("RAG_PARAMETER_LIMIT", "0")),
+        RAG_MAX_PAGES=int(os.getenv("RAG_MAX_PAGES", "100")),
+        RAG_MAX_CHARS=int(os.getenv("RAG_MAX_CHARS", "120000")),
+        RAG_MAX_TOKENS=int(os.getenv("RAG_MAX_TOKENS", "4096")),
         EXTRACTION_MODE=os.getenv("EXTRACTION_MODE", "rules"),
         LLM_API_BASE=os.getenv("LLM_API_BASE", "https://api.openai.com/v1"),
         LLM_API_KEY=os.getenv("LLM_API_KEY", ""),
@@ -47,6 +54,8 @@ def create_app(test_config=None):
         app.config.update(test_config)
     if app.config["PDF_EXTRACTION_MODE"] not in ("verbatim", "legacy"):
         raise ValueError("Invalid PDF_EXTRACTION_MODE")
+    if app.config["EXTRACTION_ENGINE"] not in ("rag", "legacy"):
+        raise ValueError("Invalid EXTRACTION_ENGINE")
     if app.config["EXTRACTION_MODE"] not in ("rules", "llm", "hybrid"):
         raise ValueError("Invalid EXTRACTION_MODE")
     Path(app.config["UPLOAD_DIR"]).mkdir(parents=True, exist_ok=True)
@@ -120,7 +129,7 @@ def create_app(test_config=None):
     @app.get("/api/health")
     def health():
         get_db().execute("SELECT 1")
-        return ok({"status": "ok", "database": "sqlite", "schema": "11-table", "extraction_mode": app.config["EXTRACTION_MODE"]})
+        return ok({"status": "ok", "database": "sqlite", "schema": "11-table", "extraction_engine": app.config["EXTRACTION_ENGINE"], "extraction_mode": app.config["EXTRACTION_MODE"]})
 
     @app.cli.command("init-db")
     def initialize():

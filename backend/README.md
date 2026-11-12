@@ -16,6 +16,38 @@
 - 没有 `tokens` 表，登录使用带签名的无状态 Token（`SECRET_KEY`）。
 - 没有 `specifications` 表，PDF 原文片段作为未映射的 `extraction_param` 行保存，审核员映射到 `parameter_def` 后逐条通过。
 
+## 参数提取方法（最强 RAG）
+
+PDF 和 URL 默认走 `最强RAG` 的方法，不再使用旧的规则/PDF 原文提取作为主路径：
+
+- 父子块索引：按页/段落切父块，再切子块；
+- 混合检索：embedding 向量 + BM25；
+- 查询扩展 3 条 → RRF → LLM rerank top-5；
+- 用 Prompt v7（`shape/unit/convention` 契约）生成；
+- 每个 `parameter_def` 查一次，失败换查询重试一次；
+- 结果写回 `extraction_param`，仍走参数级审核。
+
+配置：
+
+```dotenv
+EXTRACTION_ENGINE=rag
+# 最强RAG 默认在项目同级目录；也可用 RAG_HOME 指向别处
+# RAG_HOME=D:\...\最强RAG
+# 0 = 全部参数；设置 8 可限制单份文档的检索/生成次数
+RAG_PARAMETER_LIMIT=0
+RAG_MAX_PAGES=100
+RAG_MAX_CHARS=120000
+RAG_MAX_TOKENS=4096
+# 不建议开启；开启后 RAG 失败不再回退旧方法
+RAG_STRICT=0
+```
+
+`最强RAG` 自己读取 `最强RAG/.env` 或进程环境中的 `DASHSCOPE_API_KEY`。该 `.env` 已被 `.gitignore` 排除，不要提交。
+如果 RAG 目录、Key 或 embedding 服务不可用，后端会回退到原来的 PDF 原文/规则提取；设置 `RAG_STRICT=1` 可以强制失败而不是回退。
+手工程录入和 CSV/XLSX 仍走原有解析逻辑。
+
+> 成本提示：默认每个参数一次「扩展 + 混合检索 + rerank + 生成」，17 个参数会明显慢于旧方法、消耗更多 token。演示时可把 `RAG_PARAMETER_LIMIT` 设为 5～8，或只导入目标类别相关的参数。
+
 ## 快速运行
 
 ```powershell
