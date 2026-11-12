@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parameter Extraction - Component Extractor</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/extraction.js" defer></script>
+
+    <!-- Custom File Upload Styles -->
+    <style>
+        .file-picker-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .file-picker-button-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-picker-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 24px;
+            background: #2563eb;
+            color: #ffffff;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .file-picker-button-wrapper:hover .file-picker-button {
+            background: #1d4ed8;
+        }
+
+        .file-picker-control input[type="file"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .file-picker-button-wrapper:focus-within .file-picker-button {
+            outline: 3px solid rgba(37, 99, 235, 0.3);
+            outline-offset: 3px;
+        }
+
+        .file-name-display {
+            max-width: 100%;
+            color: #64748b;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+
+        <h2>⚡ Component</h2>
+
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html" class="active">Parameter Extraction</a>
+        <a href="tasks.html">Task Management</a>
+        <a href="comparison.html">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+
+        <a href="components-admin.html">Component Management</a>
+
+        <a href="users.html">User Management</a>
+
+        <a href="manufacturers.html">Manufacturers</a>
+
+        <a href="logs.html">Operation Logs</a>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Component Parameter Extraction</h1>
+
+                <p class="user-info">
+                    Upload datasheets or enter component information to extract technical parameters automatically.
+                </p>
+            </div>
+
+            <button
+                id="backHome"
+                class="logout-button"
+            >
+                Back to Dashboard
+            </button>
+
+        </header>
+
+        <!-- Extraction Method Tabs -->
+        <section class="content-card">
+
+            <h2>Select Extraction Method</h2>
+
+            <div class="extraction-tabs">
+
+                <button
+                    class="tab-button active"
+                    data-tab="filePanel"
+                >
+                    File Upload
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-tab="urlPanel"
+                >
+                    URL Extraction
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-tab="manualPanel"
+                >
+                    Manual Entry
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-tab="batchPanel"
+                >
+                    Batch Manual
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- File Upload -->
+        <section
+            id="filePanel"
+            class="content-card extraction-panel"
+        >
+
+            <h2>Upload Component Datasheet</h2>
+
+            <p class="panel-description">
+                Supported formats: PDF, CSV and Excel (.xlsx).
+            </p>
+
+            <form id="fileUploadForm">
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">📁</div>
+
+                    <h3>Select a File to Extract</h3>
+
+                    <p>
+                        Supported formats: PDF / CSV / XLSX. Maximum file size: 20 MB.
+                    </p>
+
+                    <!-- Custom English File Picker -->
+                    <div class="file-picker-control">
+
+                        <div class="file-picker-button-wrapper">
+
+                            <input
+                                type="file"
+                                id="uploadFile"
+                                accept=".pdf,.csv,.xlsx"
+                                aria-label="Choose a datasheet file"
+                                required
+                            >
+
+                            <label
+                                for="uploadFile"
+                                class="file-picker-button"
+                            >
+                                Choose File
+                            </label>
+
+                        </div>
+
+                        <span
+                            id="uploadFileName"
+                            class="file-name-display"
+                            aria-live="polite"
+                        >
+                            No file selected
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- File Upload Notes -->
+                <div class="file-tips">
+
+                    <p>Important Notes:</p>
+
+                    <ul>
+                        <li>PDF files must contain a readable text layer. Scanned PDFs requiring OCR are not currently supported.</li>
+                        <li>PDF files are limited to 100 pages and 120,000 characters.</li>
+                        <li>CSV and XLSX files are limited to 1,000 rows.</li>
+                        <li>Only .xlsx files are supported. The older .xls format is not supported.</li>
+                        <li>CSV/XLSX files must contain the following columns: model, manufacturer and category.</li>
+                    </ul>
+
+                </div>
+
+                <p id="fileMessage" class="form-message"></p>
+
+                <button
+                    type="submit"
+                    class="primary-button submit-extraction"
+                >
+                    Upload and Start Extraction
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- URL Extraction -->
+        <section
+            id="urlPanel"
+            class="content-card extraction-panel"
+            hidden
+        >
+
+            <h2>Web URL Extraction</h2>
+
+            <p class="panel-description">
+                Enter a publicly accessible datasheet URL. The system will attempt to retrieve and process its content.
+            </p>
+
+            <form id="urlForm">
+
+                <div class="form-group">
+
+                    <label for="sourceUrl">
+                        Datasheet URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="sourceUrl"
+                        placeholder="https://example.com/datasheet"
+                        required
+                    >
+
+                </div>
+
+                <div class="file-tips">
+
+                    <p>Important Notes:</p>
+
+                    <ul>
+                        <li>Enter a valid HTTP or HTTPS URL.</li>
+                        <li>The webpage must allow access by the system.</li>
+                        <li>The system follows robots.txt rules and backend network security restrictions.</li>
+                        <li>The current rule-based extraction mode mainly identifies explicit component models and parameter key-value pairs.</li>
+                    </ul>
+
+                </div>
+
+                <p id="urlMessage" class="form-message"></p>
+
+                <button
+                    type="submit"
+                    class="primary-button submit-extraction"
+                >
+                    Submit URL and Start Extraction
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Manual Entry -->
+        <section
+            id="manualPanel"
+            class="content-card extraction-panel"
+            hidden
+        >
+
+            <h2>Manual Component Entry</h2>
+
+            <p class="panel-description">
+                Manually enter basic component information and technical specifications.
+            </p>
+
+            <form id="manualForm">
+
+                <div class="filter-grid">
+
+                    <div class="filter-field">
+
+                        <label for="manualModel">
+                            Component Model *
+                        </label>
+
+                        <input
+                            id="manualModel"
+                            required
+                            placeholder="e.g. R-1K"
+                        >
+
+                    </div>
+
+                    <div class="filter-field">
+
+                        <label for="manualManufacturer">
+                            Manufacturer *
+                        </label>
+
+                        <input
+                            id="manualManufacturer"
+                            required
+                            placeholder="e.g. Texas Instruments"
+                        >
+
+                    </div>
+
+                    <div class="filter-field">
+
+                        <label for="manualCategory">
+                            Component Category *
+                        </label>
+
+                        <select id="manualCategory" required>
+
+                            <option value="">Select a Category</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="filter-field">
+
+                        <label for="manualPackage">
+                            Package
+                        </label>
+
+                        <input
+                            id="manualPackage"
+                            placeholder="e.g. 0603, SOT-23"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Parameter Editor -->
+                <div class="parameter-editor">
+
+                    <div class="results-header">
+
+                        <h3>Component Technical Parameters</h3>
+
+                        <button
+                            type="button"
+                            id="addParameter"
+                            class="secondary-button"
+                        >
+                            + Add Parameter
+                        </button>
+
+                    </div>
+
+                    <div id="parameterRows">
+
+                        <div class="parameter-row">
+
+                            <input
+                                class="parameter-name"
+                                placeholder="Parameter name, e.g. voltage"
+                            >
+
+                            <input
+                                class="parameter-value"
+                                placeholder="Parameter value, e.g. 3.3"
+                            >
+
+                            <input
+                                class="parameter-unit"
+                                placeholder="Unit, e.g. V"
+                            >
+
+                            <button
+                                type="button"
+                                class="remove-parameter"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="file-tips">
+                    Recommended standard parameter names include voltage, current, resistance, capacitance, frequency, power, tolerance and package.
+                </div>
+
+                <p id="manualMessage" class="form-message"></p>
+
+                <button
+                    type="submit"
+                    class="primary-button submit-extraction"
+                >
+                    Submit Information and Create Task
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Batch Manual Entry -->
+        <section
+            id="batchPanel"
+            class="content-card extraction-panel"
+            hidden
+        >
+
+            <h2>Batch Manual Entry</h2>
+
+            <p class="panel-description">
+                Paste a JSON array of components, or an object with a "components" array.
+                Each item creates one extraction task and enters parameter-level review.
+            </p>
+
+            <form id="batchForm">
+
+                <div class="filter-field">
+                    <label for="batchJson">Components JSON</label>
+                    <textarea
+                        id="batchJson"
+                        class="batch-json"
+                        rows="12"
+                        placeholder='[{"model":"R-1K","manufacturer":"Yageo","category":"电阻","package":"0603","parameters":[{"name":"Resistance","value":"1k","unit":"Ω"}]}]'
+                        required
+                    ></textarea>
+                </div>
+
+                <p id="batchMessage" class="form-message"></p>
+
+                <button
+                    type="submit"
+                    class="primary-button submit-extraction"
+                >
+                    Create Batch Tasks
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Extraction Task Status -->
+        <section
+            id="taskPanel"
+            class="content-card task-panel"
+            hidden
+        >
+
+            <div class="results-header">
+
+                <h2>Extraction Task Status</h2>
+
+                <span id="taskStatusBadge" class="status-badge">
+                    Waiting for Submission
+                </span>
+
+            </div>
+
+            <!-- Task Information -->
+            <div class="task-info">
+
+                <p>
+                    <strong>Task ID:</strong>
+                    <span id="taskId">-</span>
+                </p>
+
+                <p>
+                    <strong>Task Status:</strong>
+                    <span id="taskStatus">-</span>
+                </p>
+
+                <p>
+                    <strong>Review Status:</strong>
+                    <span id="reviewStatus">-</span>
+                </p>
+
+                <p>
+                    <strong>Task Error:</strong>
+                    <span id="taskError">None</span>
+                </p>
+
+            </div>
+
+            <div id="taskWarnings" class="task-warnings"></div>
+
+            <div id="extractedResults"></div>
+
+            <!-- Task Actions -->
+            <div class="task-actions">
+
+                <button
+                    type="button"
+                    id="refreshTask"
+                    class="secondary-button"
+                >
+                    Refresh Task Status
+                </button>
+
+                <button
+                    type="button"
+                    id="retryTask"
+                    class="primary-button retry-button"
+                    hidden
+                >
+                    Retry Task
+                </button>
+
+            </div>
+
+            <p id="pollMessage" class="user-info"></p>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- File Name Display Logic -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const uploadInput =
+            document.getElementById("uploadFile");
+
+        const fileNameDisplay =
+            document.getElementById("uploadFileName");
+
+        if (!uploadInput || !fileNameDisplay) {
+            return;
+        }
+
+        uploadInput.addEventListener("change", () => {
+
+            fileNameDisplay.textContent =
+                uploadInput.files.length > 0
+                    ? uploadInput.files[0].name
+                    : "No file selected";
+
+        });
+
+    });
+</script>
+
+</body>
+</html>

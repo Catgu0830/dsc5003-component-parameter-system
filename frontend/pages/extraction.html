@@ -90,6 +90,14 @@
         <a href="comparison.html">Parameter Comparison</a>
         <a href="audit.html">Audit Management</a>
 
+        <a href="components-admin.html">Component Management</a>
+
+        <a href="users.html">User Management</a>
+
+        <a href="manufacturers.html">Manufacturers</a>
+
+        <a href="logs.html">Operation Logs</a>
+
     </aside>
 
     <!-- Main Content -->
@@ -140,6 +148,13 @@
                     data-tab="manualPanel"
                 >
                     Manual Entry
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-tab="batchPanel"
+                >
+                    Batch Manual
                 </button>
 
             </div>
@@ -422,6 +437,46 @@
                     class="primary-button submit-extraction"
                 >
                     Submit Information and Create Task
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Batch Manual Entry -->
+        <section
+            id="batchPanel"
+            class="content-card extraction-panel"
+            hidden
+        >
+
+            <h2>Batch Manual Entry</h2>
+
+            <p class="panel-description">
+                Paste a JSON array of components, or an object with a "components" array.
+                Each item creates one extraction task and enters parameter-level review.
+            </p>
+
+            <form id="batchForm">
+
+                <div class="filter-field">
+                    <label for="batchJson">Components JSON</label>
+                    <textarea
+                        id="batchJson"
+                        class="batch-json"
+                        rows="12"
+                        placeholder='[{"model":"R-1K","manufacturer":"Yageo","category":"电阻","package":"0603","parameters":[{"name":"Resistance","value":"1k","unit":"Ω"}]}]'
+                        required
+                    ></textarea>
+                </div>
+
+                <p id="batchMessage" class="form-message"></p>
+
+                <button
+                    type="submit"
+                    class="primary-button submit-extraction"
+                >
+                    Create Batch Tasks
                 </button>
 
             </form>

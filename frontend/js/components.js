@@ -426,10 +426,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     parameter.value_num ??
                     parameter.value_text ??
                     "-";
+                const unit = parameter.unit || "";
+                const valueText = String(value);
+                const displayUnit = unit && !valueText.includes(unit) ? ` ${unit}` : "";
 
                 p.textContent =
-                    `${parameter.name}: ${value}` +
-                    `${parameter.unit || ""}`;
+                    `${parameter.name}: ${valueText}${displayUnit}`;
 
                 detailContent.appendChild(p);
 
@@ -707,6 +709,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCategories().finally(() => {
         renderSavedFilters();
         loadComponents();
+        const requestedComponent =
+            new URLSearchParams(window.location.search).get("component");
+        if (requestedComponent) {
+            showDetails(requestedComponent);
+        }
     });
 
 });

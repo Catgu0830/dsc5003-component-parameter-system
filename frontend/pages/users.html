@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Component Extractor</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/users.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2>⚡ Component</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html">Parameter Extraction</a>
+        <a href="tasks.html">Task Management</a>
+        <a href="comparison.html">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+        <a href="components-admin.html">Component Management</a>
+        <a href="users.html" class="active">User Management</a>
+        <a href="manufacturers.html">Manufacturers</a>
+        <a href="logs.html">Operation Logs</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>User Management</h1>
+                <p class="user-info">Create accounts, assign roles, disable users and reset passwords.</p>
+            </div>
+            <button id="backHome" class="logout-button">Back to Dashboard</button>
+        </header>
+
+        <section class="content-card">
+            <h2>Create User</h2>
+            <p class="panel-description">Only administrators can access this page. Public registration always creates a standard user.</p>
+            <form id="createUserForm">
+                <div class="filter-grid">
+                    <div class="filter-field">
+                        <label for="newUsername">Username</label>
+                        <input id="newUsername" required placeholder="3-50 characters">
+                    </div>
+                    <div class="filter-field">
+                        <label for="newPassword">Password</label>
+                        <input id="newPassword" type="password" required placeholder="At least 8 characters">
+                    </div>
+                    <div class="filter-field">
+                        <label for="newRole">Role</label>
+                        <select id="newRole">
+                            <option value="user">User</option>
+                            <option value="auditor">Auditor</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                </div>
+                <p id="createMessage" class="form-message"></p>
+                <button type="submit" class="primary-button">Create User</button>
+            </form>
+        </section>
+
+        <section class="content-card">
+            <div class="results-header">
+                <h2>Users</h2>
+                <span id="userCount" class="user-info">Loading...</span>
+            </div>
+            <p id="userMessage" class="form-message"></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Active</th>
+                            <th>Last Login</th>
+                            <th>New Password</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <tr><td colspan="7">Loading users...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

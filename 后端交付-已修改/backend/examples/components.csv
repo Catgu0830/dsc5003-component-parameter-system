@@ -1,0 +1,4 @@
+model,manufacturer,category,voltage,current,resistance,capacitance,tolerance,package
+DEMO-R10K,Demo Electronics,resistor,50V,,10kΩ,,1%,0603
+DEMO-C100N,Demo Electronics,capacitor,25V,,,100nF,5%,0805
+DEMO-DIODE,Demo Electronics,diode,100V,200mA,,,,SOD-123

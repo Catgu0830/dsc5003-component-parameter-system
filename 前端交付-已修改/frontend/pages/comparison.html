@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parameter Comparison - Component Extractor</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/comparison.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+
+        <h2>⚡ Component</h2>
+
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html">Parameter Extraction</a>
+        <a href="tasks.html">Task Management</a>
+        <a href="comparison.html" class="active">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+        <a href="components-admin.html">Component Management</a>
+        <a href="users.html">User Management</a>
+        <a href="manufacturers.html">Manufacturers</a>
+        <a href="logs.html">Operation Logs</a>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Component Parameter Comparison</h1>
+
+                <p class="user-info">
+                    Compare technical specifications and identify differences between multiple components.
+                </p>
+            </div>
+
+            <button
+                id="backHome"
+                class="secondary-button"
+            >
+                Back to Dashboard
+            </button>
+
+        </header>
+
+        <!-- Component Search -->
+        <section class="content-card">
+
+            <h2>Select Components</h2>
+
+            <p class="panel-description">
+                Search and select components for comparison. Select at least 2 and up to 10 components.
+            </p>
+
+            <div class="comparison-search">
+
+                <input
+                    type="text"
+                    id="componentKeyword"
+                    placeholder="Enter model keyword, e.g. DEMO"
+                >
+
+                <select id="componentCategory">
+
+                    <option value="">All Categories</option>
+                    <option value="resistor">Resistor</option>
+                    <option value="capacitor">Capacitor</option>
+                    <option value="diode">Diode</option>
+                    <option value="transistor">Transistor</option>
+                    <option value="ic">Integrated Circuit</option>
+                    <option value="inductor">Inductor</option>
+
+                </select>
+
+                <button
+                    id="searchComponents"
+                    class="primary-button"
+                >
+                    Search
+                </button>
+
+                <button
+                    id="resetSearch"
+                    class="secondary-button"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+            <div class="comparison-selection-header">
+
+                <h3>Available Components</h3>
+
+                <span id="availableCount" class="user-info">
+                    Loading...
+                </span>
+
+            </div>
+
+            <div class="comparison-component-list">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Select</th>
+                            <th>Model</th>
+                            <th>Manufacturer</th>
+                            <th>Category</th>
+                            <th>Parameter Count</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="componentSelectionBody">
+
+                        <tr>
+                            <td colspan="5">Loading components...</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+
+                <button
+                    id="componentPrev"
+                    class="secondary-button"
+                >
+                    Previous
+                </button>
+
+                <span id="componentPageInfo">
+                    Page 1
+                </span>
+
+                <button
+                    id="componentNext"
+                    class="secondary-button"
+                >
+                    Next
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Selected Components -->
+        <section class="content-card">
+
+            <div class="results-header">
+
+                <h2>Selected Components</h2>
+
+                <span id="selectedCount" class="user-info">
+                    Selected: 0 / 10
+                </span>
+
+            </div>
+
+            <div id="selectedComponents" class="selected-components">
+
+                <p class="user-info">
+                    Please select components from the list above.
+                </p>
+
+            </div>
+
+            <div class="comparison-actions">
+
+                <button
+                    id="compareButton"
+                    class="primary-button"
+                    disabled
+                >
+                    Start Comparison
+                </button>
+
+                <button
+                    id="clearSelection"
+                    class="secondary-button"
+                >
+                    Clear Selection
+                </button>
+
+            </div>
+
+            <p id="selectionMessage" class="form-message"></p>
+
+        </section>
+
+        <!-- Comparison Results -->
+        <section
+            id="comparisonResult"
+            class="content-card"
+            hidden
+        >
+
+            <div class="results-header">
+
+                <div>
+                    <h2>Comparison Results</h2>
+
+                    <p class="panel-description">
+                        Automatically align matching parameters and highlight differences and missing values.
+                    </p>
+                </div>
+
+                <button
+                    id="refreshComparison"
+                    class="secondary-button"
+                >
+                    Compare Again
+                </button>
+
+            </div>
+
+            <!-- Statistics -->
+            <div class="comparison-statistics">
+
+                <div class="comparison-stat-card">
+                    <span>Components Compared</span>
+                    <strong id="statComponents">0</strong>
+                </div>
+
+                <div class="comparison-stat-card">
+                    <span>Total Parameters</span>
+                    <strong id="statParameters">0</strong>
+                </div>
+
+                <div class="comparison-stat-card">
+                    <span>Parameters with Differences</span>
+                    <strong id="statDifferences">0</strong>
+                </div>
+
+                <div class="comparison-stat-card">
+                    <span>Parameters with Missing Values</span>
+                    <strong id="statMissing">0</strong>
+                </div>
+
+            </div>
+
+            <!-- Comparison Legend -->
+            <div class="comparison-legend">
+
+                <span>
+                    <i class="legend-normal"></i>
+                    Matching Parameters
+                </span>
+
+                <span>
+                    <i class="legend-different"></i>
+                    Different Parameters
+                </span>
+
+                <span>
+                    <i class="legend-missing"></i>
+                    Missing Parameters
+                </span>
+
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table-wrapper">
+
+                <table
+                    id="comparisonTable"
+                    class="comparison-table"
+                >
+
+                    <thead id="comparisonHead"></thead>
+
+                    <tbody id="comparisonBody"></tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Export Results -->
+            <div class="comparison-export">
+
+                <h3>Export Comparison Results</h3>
+
+                <div class="export-buttons">
+
+                    <button
+                        class="secondary-button"
+                        data-format="csv"
+                    >
+                        Export CSV
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        data-format="xlsx"
+                    >
+                        Export Excel
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        data-format="json"
+                    >
+                        Export JSON
+                    </button>
+
+                </div>
+
+                <p id="exportMessage" class="form-message"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

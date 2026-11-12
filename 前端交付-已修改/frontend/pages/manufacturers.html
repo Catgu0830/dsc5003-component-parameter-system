@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturers - Component Extractor</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/manufacturers.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2>⚡ Component</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html">Parameter Extraction</a>
+        <a href="tasks.html">Task Management</a>
+        <a href="comparison.html">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+        <a href="components-admin.html">Component Management</a>
+        <a href="users.html">User Management</a>
+        <a href="manufacturers.html" class="active">Manufacturers</a>
+        <a href="logs.html">Operation Logs</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Manufacturers</h1>
+                <p class="user-info">Maintain manufacturer name, short name and official website.</p>
+            </div>
+            <button id="backHome" class="logout-button">Back to Dashboard</button>
+        </header>
+
+        <section class="content-card">
+            <h2>Add Manufacturer</h2>
+            <form id="manufacturerForm">
+                <div class="filter-grid">
+                    <div class="filter-field">
+                        <label for="manufacturerName">Name *</label>
+                        <input id="manufacturerName" required placeholder="e.g. Texas Instruments">
+                    </div>
+                    <div class="filter-field">
+                        <label for="manufacturerShortName">Short Name</label>
+                        <input id="manufacturerShortName" placeholder="e.g. TI">
+                    </div>
+                    <div class="filter-field">
+                        <label for="manufacturerWebsite">Website</label>
+                        <input id="manufacturerWebsite" placeholder="https://www.ti.com">
+                    </div>
+                </div>
+                <p id="manufacturerMessage" class="form-message"></p>
+                <button type="submit" class="primary-button">Add Manufacturer</button>
+            </form>
+        </section>
+
+        <section class="content-card">
+            <div class="results-header">
+                <h2>Manufacturer List</h2>
+                <span id="manufacturerCount" class="user-info">Loading...</span>
+            </div>
+            <p id="manufacturerListMessage" class="form-message"></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Short Name</th>
+                            <th>Website</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="manufacturerTableBody">
+                        <tr><td colspan="5">Loading manufacturers...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Logs - Component Extractor</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/logs.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2>⚡ Component</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html">Parameter Extraction</a>
+        <a href="tasks.html">Task Management</a>
+        <a href="comparison.html">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+        <a href="components-admin.html">Component Management</a>
+        <a href="users.html">User Management</a>
+        <a href="manufacturers.html">Manufacturers</a>
+        <a href="logs.html" class="active">Operation Logs</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Operation Logs</h1>
+                <p class="user-info">Login, upload, extraction, review, delete and export activity.</p>
+            </div>
+            <button id="backHome" class="logout-button">Back to Dashboard</button>
+        </header>
+
+        <section class="content-card">
+            <div class="results-header">
+                <h2>Log Entries</h2>
+                <span id="logCount" class="user-info">Loading...</span>
+            </div>
+            <p id="logMessage" class="form-message"></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Target</th>
+                            <th>Detail</th>
+                            <th>IP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody">
+                        <tr><td colspan="6">Loading logs...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button id="prevPage" class="secondary-button">Previous</button>
+                <span id="pageInfo">Page 1</span>
+                <button id="nextPage" class="secondary-button">Next</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

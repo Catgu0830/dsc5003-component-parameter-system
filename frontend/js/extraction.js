@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileForm = document.getElementById("fileUploadForm");
     const urlForm = document.getElementById("urlForm");
     const manualForm = document.getElementById("manualForm");
+    const batchForm = document.getElementById("batchForm");
 
     const parameterRows = document.getElementById("parameterRows");
 
@@ -832,6 +833,82 @@ document.addEventListener("DOMContentLoaded", () => {
 
             showMessage(
                 "manualMessage",
+                error.message,
+                "error"
+            );
+
+        });
+
+    });
+
+    // ------------------------------------
+    // Batch manual entry
+    // ------------------------------------
+
+    batchForm.addEventListener("submit", async event => {
+
+        event.preventDefault();
+
+        let payload;
+
+        try {
+
+            payload = JSON.parse(
+                document.getElementById("batchJson").value
+            );
+
+        } catch {
+
+            showMessage(
+                "batchMessage",
+                "Invalid JSON. Paste an array or an object with a components array.",
+                "error"
+            );
+
+            return;
+
+        }
+
+        const components = Array.isArray(payload)
+            ? payload
+            : payload?.components;
+
+        if (!Array.isArray(components) || components.length === 0) {
+
+            showMessage(
+                "batchMessage",
+                "The JSON must contain a non-empty components array.",
+                "error"
+            );
+
+            return;
+
+        }
+
+        const button =
+            batchForm.querySelector("button[type=submit]");
+
+        await runWithLoading(button, "Creating Tasks...", async () => {
+
+            const result = await apiRequest("/api/tasks/batch", {
+                method: "POST",
+                body: { components }
+            });
+
+            const count = result.data?.count ?? components.length;
+
+            showMessage(
+                "batchMessage",
+                `${count} batch task(s) created successfully.`,
+                "success"
+            );
+
+            await acceptTask(result);
+
+        }).catch(error => {
+
+            showMessage(
+                "batchMessage",
                 error.message,
                 "error"
             );

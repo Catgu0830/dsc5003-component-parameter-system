@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Management - Component Extractor</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/components-admin.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2>⚡ Component</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html">Parameter Extraction</a>
+        <a href="tasks.html">Task Management</a>
+        <a href="comparison.html">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+        <a href="components-admin.html" class="active">Component Management</a>
+        <a href="users.html">User Management</a>
+        <a href="manufacturers.html">Manufacturers</a>
+        <a href="logs.html">Operation Logs</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Component Management</h1>
+                <p class="user-info">Create, edit and delete component identity records. Parameters remain review-controlled.</p>
+            </div>
+            <button id="backHome" class="logout-button">Back to Dashboard</button>
+        </header>
+
+        <section class="content-card">
+            <h2 id="componentFormTitle">Add Component</h2>
+            <form id="componentForm">
+                <input type="hidden" id="componentId">
+                <div class="filter-grid">
+                    <div class="filter-field">
+                        <label for="componentModel">Model *</label>
+                        <input id="componentModel" required placeholder="e.g. RC0603FR-0710KL">
+                    </div>
+                    <div class="filter-field">
+                        <label for="componentManufacturer">Manufacturer *</label>
+                        <input id="componentManufacturer" required placeholder="e.g. Yageo">
+                    </div>
+                    <div class="filter-field">
+                        <label for="componentCategory">Category *</label>
+                        <select id="componentCategory" required></select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="componentPackage">Package</label>
+                        <input id="componentPackage" placeholder="e.g. 0603">
+                    </div>
+                    <div class="filter-field">
+                        <label for="componentDescription">Description</label>
+                        <input id="componentDescription" placeholder="Optional description">
+                    </div>
+                </div>
+                <p id="componentMessage" class="form-message"></p>
+                <div class="task-management-actions">
+                    <button type="submit" class="primary-button">Save Component</button>
+                    <button type="button" id="cancelEdit" class="secondary-button" hidden>Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="content-card">
+            <div class="results-header">
+                <h2>Component List</h2>
+                <span id="componentCount" class="user-info">Loading...</span>
+            </div>
+            <p id="componentListMessage" class="form-message"></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Model</th>
+                            <th>Manufacturer</th>
+                            <th>Category</th>
+                            <th>Package</th>
+                            <th>Parameters</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="componentTableBody">
+                        <tr><td colspan="7">Loading components...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button id="prevPage" class="secondary-button">Previous</button>
+                <span id="pageInfo">Page 1</span>
+                <button id="nextPage" class="secondary-button">Next</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

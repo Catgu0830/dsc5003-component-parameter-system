@@ -1756,3 +1756,51 @@ th {
     color: #8a5a00;
     font-weight: 600;
 }
+
+/* Batch manual entry */
+.batch-json {
+    width: 100%;
+    min-height: 220px;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+/* Admin tables and saved filters */
+.table-input {
+    width: 100%;
+    min-width: 120px;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.saved-filter-select {
+    min-width: 160px;
+    padding: 9px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #334155;
+}
+
+.login-footer a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.table-action + .table-action {
+    margin-left: 6px;
+}

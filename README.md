@@ -20,9 +20,11 @@
 │   └── README.md
 ├── frontend/                            # 原生 HTML/CSS/JS
 │   ├── login.html
+│   ├── register.html
 │   ├── css/
 │   ├── js/
-│   └── pages/                           # 7 个业务页面
+│   └── pages/                           # dashboard/components/extraction/tasks/
+│                                        # comparison/audit/users/manufacturers/logs
 ├── 最强RAG/                             # PDF/URL 参数提取的 RAG 方法
 │   ├── chips_extractor/llm/             # 混合检索、RRF、rerank、Prompt v7
 │   ├── chips_extractor/settings.py

@@ -1,0 +1,14 @@
+{
+  "source_type": "manual",
+  "component": {
+    "model": "DEMO-R1K",
+    "manufacturer": "Demo Electronics",
+    "category": "resistor",
+    "parameters": [
+      {"name": "resistance", "value": "1kΩ", "confidence": 1},
+      {"name": "voltage", "value": "50V", "confidence": 1},
+      {"name": "tolerance", "value": "1%", "confidence": 1},
+      {"name": "package", "value": "0603", "confidence": 1}
+    ]
+  }
+}
