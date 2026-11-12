@@ -1,0 +1,6 @@
+Model: DEMO-LDO33
+Manufacturer: Demo Electronics
+Category: ic
+Voltage: 3.3V
+Current: 500mA
+Package: SOT-23

@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Component Search - Component Extractor</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/components.js" defer></script>
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+
+            <h2>⚡ Component</h2>
+
+            <a href="dashboard.html">Dashboard</a>
+            <a href="components.html" class="active">Components</a>
+            <a href="extraction.html">Parameter Extraction</a>
+            <a href="tasks.html">Task Management</a>
+            <a href="comparison.html">Parameter Comparison</a>
+            <a href="audit.html">Audit Management</a>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Component Search</h1>
+
+                    <p class="user-info">
+                        Search, filter and view electronic component specifications.
+                    </p>
+                </div>
+
+                <button
+                    id="backHome"
+                    class="logout-button"
+                >
+                    Back to Dashboard
+                </button>
+
+            </header>
+
+            <!-- Search Filters -->
+            <section class="content-card">
+
+                <h2>Search Filters</h2>
+
+                <form id="searchForm">
+
+                    <div class="filter-grid">
+
+                        <div class="filter-field">
+                            <label for="keyword">Model Keyword</label>
+
+                            <input
+                                id="keyword"
+                                type="text"
+                                placeholder="e.g. DEMO-R1K"
+                            >
+                        </div>
+
+                        <div class="filter-field">
+                            <label for="category">Component Category</label>
+
+                            <select id="category">
+
+                                <option value="">All Categories</option>
+
+                            </select>
+                        </div>
+
+                        <div class="filter-field">
+                            <label for="manufacturer">Manufacturer</label>
+
+                            <input
+                                id="manufacturer"
+                                type="text"
+                                placeholder="Enter manufacturer name"
+                            >
+                        </div>
+
+                        <div class="filter-field">
+                            <label for="package">Package</label>
+
+                            <input
+                                id="package"
+                                type="text"
+                                placeholder="e.g. 0603"
+                            >
+                        </div>
+
+                        <div class="filter-field">
+                            <label for="voltageMin">Minimum Voltage (V)</label>
+
+                            <input
+                                id="voltageMin"
+                                type="number"
+                                step="any"
+                                min="0"
+                                placeholder="e.g. 3.3"
+                            >
+                        </div>
+
+                        <div class="filter-field">
+                            <label for="voltageMax">Maximum Voltage (V)</label>
+
+                            <input
+                                id="voltageMax"
+                                type="number"
+                                step="any"
+                                min="0"
+                                placeholder="e.g. 5"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="filter-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-button search-button"
+                        >
+                            Search Components
+                        </button>
+
+                        <button
+                            type="reset"
+                            id="resetButton"
+                            class="secondary-button"
+                        >
+                            Reset Filters
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- Search Results -->
+            <section class="content-card results-card">
+
+                <div class="results-header">
+
+                    <h2>Search Results</h2>
+
+                    <span id="resultCount" class="user-info">
+                        Loading...
+                    </span>
+
+                </div>
+
+                <p id="searchMessage" class="search-message"></p>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Component Model</th>
+                                <th>Manufacturer</th>
+                                <th>Category</th>
+                                <th>Parameter Count</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="componentTable">
+
+                            <tr>
+                                <td colspan="5">
+                                    Loading component data...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+
+                    <button
+                        id="previousPage"
+                        class="secondary-button"
+                    >
+                        Previous
+                    </button>
+
+                    <span id="pageInfo">Page 1</span>
+
+                    <button
+                        id="nextPage"
+                        class="secondary-button"
+                    >
+                        Next
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Component Details -->
+            <section
+                id="detailPanel"
+                class="content-card detail-panel"
+                hidden
+            >
+
+                <div class="results-header">
+
+                    <h2>Component Details</h2>
+
+                    <button
+                        id="closeDetail"
+                        class="secondary-button"
+                    >
+                        Close
+                    </button>
+
+                </div>
+
+                <div id="detailContent"></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Component Extractor</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/dashboard.js" defer></script>
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+
+            <h2>⚡ Component</h2>
+
+            <a href="dashboard.html" class="active">Dashboard</a>
+
+            <a href="components.html">Components</a>
+
+            <a href="extraction.html">Parameter Extraction</a>
+
+            <a href="tasks.html">Task Management</a>
+
+            <a href="comparison.html">Parameter Comparison</a>
+
+            <a href="audit.html">Audit Management</a>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p class="user-info">
+                        Welcome to the Electronic Component Parameter Extraction System.
+                    </p>
+                </div>
+
+                <div>
+                    <span id="userName" class="user-info">
+                        Loading...
+                    </span>
+
+                    <button
+                        id="logoutButton"
+                        class="logout-button"
+                    >
+                        Logout
+                    </button>
+                </div>
+
+            </header>
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <p>Total Components</p>
+                    <h2 id="componentCount">-</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Current User</p>
+                    <h2 id="currentRole">-</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>System Status</p>
+                    <h2 id="systemStatus">Normal</h2>
+                </div>
+
+            </section>
+
+            <section class="content-card">
+
+                <h2>Component List</h2>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Manufacturer</th>
+                            <th>Category</th>
+                            <th>Parameter Count</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="componentTable">
+
+                        <tr>
+                            <td colspan="4" class="empty-message">
+                                Loading component data...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

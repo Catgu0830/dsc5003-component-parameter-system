@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Management - Component Extractor</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/tasks.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+
+        <h2>⚡ Component</h2>
+
+        <a href="dashboard.html">Dashboard</a>
+        <a href="components.html">Components</a>
+        <a href="extraction.html">Parameter Extraction</a>
+        <a href="tasks.html" class="active">Task Management</a>
+        <a href="comparison.html">Parameter Comparison</a>
+        <a href="audit.html">Audit Management</a>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Task Management</h1>
+
+                <p class="user-info">
+                    Monitor task progress, extraction results and execution history.
+                </p>
+            </div>
+
+            <button id="refreshTasks" class="secondary-button">
+                ↻ Refresh Tasks
+            </button>
+
+        </header>
+
+        <!-- Introduction -->
+        <section class="content-card">
+
+            <div class="results-header">
+
+                <div>
+                    <h2>My Extraction Tasks</h2>
+
+                    <p class="panel-description">
+                        Manage tasks created through file uploads, URLs and manual entries.
+                    </p>
+                </div>
+
+                <a href="extraction.html" class="primary-button">
+                    + Create New Task
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Filters -->
+        <section class="content-card">
+
+            <h3>Task Filters</h3>
+
+            <div class="task-filter-grid">
+
+                <div class="filter-field">
+
+                    <label for="statusFilter">Task Status</label>
+
+                    <select id="statusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="success">Successful</option>
+                        <option value="failed">Failed</option>
+                    </select>
+
+                </div>
+
+                <div class="filter-field">
+
+                    <label for="reviewFilter">Review Status</label>
+
+                    <select id="reviewFilter">
+                        <option value="">All Review States</option>
+                        <option value="pending">Pending Review</option>
+                        <option value="partial">Partially Reviewed</option>
+                        <option value="reviewed">Reviewed</option>
+                        <option value="empty">No Parameters</option>
+                    </select>
+
+                </div>
+
+                <div class="filter-field">
+
+                    <label for="pageSize">Items Per Page</label>
+
+                    <select id="pageSize">
+                        <option value="10">10 Items</option>
+                        <option value="20" selected>20 Items</option>
+                        <option value="50">50 Items</option>
+                        <option value="100">100 Items</option>
+                    </select>
+
+                </div>
+
+                <div class="filter-field filter-button-group">
+
+                    <button id="applyFilters" class="primary-button">
+                        Apply Filters
+                    </button>
+
+                    <button id="resetFilters" class="secondary-button">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Task List -->
+        <section class="content-card">
+
+            <div class="results-header">
+
+                <h3>Task List</h3>
+
+                <span id="taskCount" class="user-info">
+                    0 Records
+                </span>
+
+            </div>
+
+            <p id="listMessage" class="form-message"></p>
+
+            <div class="task-table-wrapper">
+
+                <table class="task-table">
+
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Source Type</th>
+                            <th>Task Status</th>
+                            <th>Review Status</th>
+                            <th>Created At</th>
+                            <th>Completed At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tasksTableBody">
+
+                        <tr>
+                            <td colspan="7">Loading tasks...</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+
+                <button id="prevPage" class="secondary-button">
+                    Previous
+                </button>
+
+                <span id="pageInfo">Page 1</span>
+
+                <button id="nextPage" class="secondary-button">
+                    Next
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Task Details -->
+        <section id="taskDetailPanel" class="content-card" hidden>
+
+            <div class="results-header">
+
+                <div>
+                    <h2>Task Details</h2>
+                    <p class="user-info" id="detailTaskId"></p>
+                </div>
+
+                <button id="closeDetail" class="secondary-button">
+                    Close Details
+                </button>
+
+            </div>
+
+            <div id="detailMessage" class="form-message"></div>
+
+            <!-- Basic Information -->
+            <div class="task-detail-grid" id="taskBasicInfo"></div>
+
+            <!-- Task Actions -->
+            <div class="task-management-actions">
+
+                <button id="detailRetry" class="primary-button" hidden>
+                    Retry Task
+                </button>
+
+                <button id="downloadSource" class="secondary-button" hidden>
+                    Download Original File
+                </button>
+
+                <button id="refreshDetail" class="secondary-button">
+                    Refresh Details
+                </button>
+
+            </div>
+
+            <!-- Error Information -->
+            <div id="detailError" class="task-error-box" hidden></div>
+
+            <!-- Warnings -->
+            <div id="detailWarnings"></div>
+
+            <!-- Extracted Components -->
+            <div class="task-detail-results">
+
+                <h3>Extraction Results</h3>
+
+                <div id="detailComponents"></div>
+
+            </div>
+
+            <!-- Source Information -->
+            <div class="task-detail-results">
+
+                <h3>Source Information</h3>
+
+                <div id="detailSource"></div>
+
+            </div>
+
+            <!-- Audit History -->
+            <div class="task-detail-results">
+
+                <h3>Audit History</h3>
+
+                <div id="detailAudit"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

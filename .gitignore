@@ -22,6 +22,9 @@ venv/
 # 含个人联系方式，不公开
 TeamForming.docx
 
+# 代码审查/临时解压目录
+_review/
+
 # 操作系统
 Thumbs.db
 .DS_Store

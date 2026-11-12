@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Audit Management - Component Extractor</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/audit.js" defer></script>
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+
+            <h2>⚡ Component</h2>
+
+            <a href="dashboard.html">Dashboard</a>
+            <a href="components.html">Components</a>
+            <a href="extraction.html">Parameter Extraction</a>
+            <a href="tasks.html">Task Management</a>
+            <a href="comparison.html">Parameter Comparison</a>
+            <a href="audit.html" class="active">Audit Management</a>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Audit Management</h1>
+
+                    <p class="user-info">
+                        Review extracted parameters one by one. Approval publishes that parameter through the database trigger.
+                    </p>
+                </div>
+
+                <button id="backHome" class="logout-button">
+                    Back to Dashboard
+                </button>
+
+            </header>
+
+            <section class="content-card">
+
+                <div class="results-header">
+
+                    <h2>Pending Extraction Parameters</h2>
+
+                    <span id="reviewCount" class="user-info">
+                        Loading...
+                    </span>
+
+                </div>
+
+                <p id="listMessage" class="form-message"></p>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Source</th>
+                                <th>Model</th>
+                                <th>Manufacturer</th>
+                                <th>Pending / Total</th>
+                                <th>Created</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="pendingBody">
+                            <tr>
+                                <td colspan="7">Loading reviews...</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="pagination">
+
+                    <button id="prevPage" class="secondary-button">
+                        Previous
+                    </button>
+
+                    <span id="pageInfo">Page 1</span>
+
+                    <button id="nextPage" class="secondary-button">
+                        Next
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section id="reviewPanel" class="content-card" hidden>
+
+                <div class="results-header">
+
+                    <h2>Review Task <span id="reviewTaskId"></span></h2>
+
+                    <button id="closeReview" class="secondary-button">
+                        Close
+                    </button>
+
+                </div>
+
+                <div id="detailMessage" class="form-message"></div>
+
+                <div id="taskInfo" class="task-detail-grid"></div>
+
+                <h3>Component Identity</h3>
+
+                <p class="panel-description">
+                    These fields become the component record when the first parameter is approved.
+                    The category must already exist in the category dictionary.
+                </p>
+
+                <div class="filter-grid">
+
+                    <div class="filter-field">
+                        <label for="identityModel">Model *</label>
+                        <input id="identityModel">
+                    </div>
+
+                    <div class="filter-field">
+                        <label for="identityManufacturer">Manufacturer *</label>
+                        <input id="identityManufacturer">
+                    </div>
+
+                    <div class="filter-field">
+                        <label for="identityCategory">Category *</label>
+                        <select id="identityCategory"></select>
+                    </div>
+
+                    <div class="filter-field">
+                        <label for="identityPackage">Package</label>
+                        <input id="identityPackage">
+                    </div>
+
+                </div>
+
+                <div class="task-management-actions">
+                    <button id="saveIdentity" class="primary-button">
+                        Save Identity
+                    </button>
+                </div>
+
+                <h3>Extracted Parameters</h3>
+
+                <p class="panel-description">
+                    Map unknown names to a parameter definition. Approve or reject each row independently.
+                    A numeric parameter needs a value and a unit before approval.
+                </p>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Raw Name</th>
+                                <th>Raw Value</th>
+                                <th>Mapped Parameter</th>
+                                <th>Numeric Value</th>
+                                <th>Unit</th>
+                                <th>Confidence</th>
+                                <th>Page</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="paramBody">
+                            <tr>
+                                <td colspan="10">Open a task to review its parameters.</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <section class="content-card">
+
+                <div class="results-header">
+
+                    <h2>Audit Log</h2>
+
+                    <button id="refreshLogs" class="secondary-button">
+                        Refresh
+                    </button>
+
+                </div>
+
+                <p id="logsMessage" class="form-message"></p>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Task</th>
+                                <th>Parameter</th>
+                                <th>Auditor</th>
+                                <th>Action</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="auditLogsBody">
+                            <tr>
+                                <td colspan="6">Loading audit log...</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

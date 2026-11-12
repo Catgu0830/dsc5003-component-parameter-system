@@ -4,6 +4,25 @@
 5003_Team_Project/
 ├── README.md
 ├── .gitignore
+├── backend/                             # Flask + SQLite（11 表、参数级审核）
+│   ├── backend/
+│   │   ├── schema.sql                   # 与 Database/db/01_schema.sql 一致
+│   │   ├── seed_catalog.sql             # 类别/参数词典
+│   │   ├── auth.py                      # 无状态 Token、登录/注册
+│   │   ├── tasks.py                     # 任务、上传、提取结果
+│   │   ├── audit.py                     # 参数级审核
+│   │   ├── components.py                # 查询/筛选/对比/管理
+│   │   ├── exports.py                   # CSV/XLSX/JSON 导出
+│   │   └── ...
+│   ├── tests/                           # 11 表核心流程测试
+│   ├── examples/                        # 示例 PDF/CSV/XLSX
+│   ├── run.py
+│   └── README.md
+├── frontend/                            # 原生 HTML/CSS/JS
+│   ├── login.html
+│   ├── css/
+│   ├── js/
+│   └── pages/                           # 7 个业务页面
 ├── Database/
 │   ├── db/                              # SQLite 数据库脚本与验收
 │   │   ├── 00_reset.sql

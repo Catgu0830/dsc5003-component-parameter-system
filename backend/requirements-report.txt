@@ -1,0 +1,2 @@
+# Optional: regenerate the PDF running report after testing.
+reportlab>=4,<5
