@@ -1,6 +1,7 @@
-﻿"""Parameter-level review against extraction_param / audit_log."""
+"""Parameter-level review against extraction_param / audit_log."""
 import json
 import math
+from pathlib import Path
 
 from flask import Blueprint, g, request
 
@@ -94,6 +95,44 @@ def _mapped_definition(db, parameter_id):
     if row is None:
         raise APIError("parameter_id does not exist")
     return row
+
+
+@bp.get("/params")
+@login_required("admin", "auditor")
+def pending_params():
+    """Parameter-level pending list: result, source and confidence per row."""
+    page, size = pagination()
+    db = get_db()
+    where = "1=1"
+    args = []
+    if request.args.get("task_id"):
+        where = "v.task_id=?"
+        args = [integer(request.args["task_id"], "task_id")]
+    total = db.execute(
+        "SELECT COUNT(*) FROM v_pending_review v WHERE " + where, args
+    ).fetchone()[0]
+    rows = db.execute(
+        "SELECT v.extraction_param_id,v.task_id,v.user_id,v.username,v.component_id,"
+        "COALESCE(v.model,t.extracted_model) AS model,"
+        "v.source_type,v.source_location,v.parameter_id,v.canonical_name,v.display_name,"
+        "v.raw_name,v.raw_value,v.value_num,v.unit,v.confidence,v.source_page,v.source_snippet,v.created_time "
+        "FROM v_pending_review v JOIN extraction_task t ON t.task_id=v.task_id "
+        "WHERE " + where + " "
+        "ORDER BY v.confidence IS NULL,v.confidence,v.extraction_param_id "
+        "LIMIT ? OFFSET ?",
+        args + [size, (page - 1) * size],
+    ).fetchall()
+    items = []
+    for row in rows:
+        item = dict(row)
+        location = item.get("source_location") or ""
+        if item.get("source_type") in ("pdf", "csv", "excel") and location:
+            item["source_location"] = Path(location).name
+            item["source_file"] = True
+        else:
+            item["source_file"] = False
+        items.append(item)
+    return ok({"items": items, "total": total, "page": page, "page_size": size})
 
 
 @bp.get("/tasks")

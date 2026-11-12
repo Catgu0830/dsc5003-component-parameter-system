@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPages = 1;
     let currentTaskId = null;
 
+    function getCachedUser() {
+        try {
+            return JSON.parse(localStorage.getItem("currentUser") || "{}");
+        } catch {
+            return {};
+        }
+    }
+
     // ------------------------------------
     // Helpers
     // ------------------------------------
@@ -470,6 +478,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("downloadSource").hidden =
             !hasSourceFile(task);
 
+        const user = getCachedUser();
+        const canDelete = user.role === "admin" ||
+            (user.role === "user" && Number(user.user_id) === Number(task.user_id));
+        document.getElementById("detailDelete").hidden =
+            !canDelete || status === "processing";
+
         showMessage("detailMessage", "");
 
     }
@@ -786,6 +800,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 "retry",
                 "Task retry has been submitted successfully."
             );
+
+        });
+
+    // ------------------------------------
+    // Delete task
+    // ------------------------------------
+
+    document.getElementById("detailDelete")
+        .addEventListener("click", async () => {
+
+            if (currentTaskId === null) return;
+            if (!confirm("Delete this extraction task? This cannot be undone.")) {
+                return;
+            }
+
+            try {
+
+                await apiRequest(`/api/tasks/${encodeURIComponent(currentTaskId)}`, {
+                    method: "DELETE",
+                    body: { confirm: true }
+                });
+
+                showMessage("listMessage", "Task deleted.", "success");
+                detailPanel.hidden = true;
+                currentTaskId = null;
+                await loadTasks();
+
+            } catch (error) {
+
+                showMessage("detailMessage", error.message, "error");
+
+            }
 
         });
 

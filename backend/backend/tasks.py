@@ -1,5 +1,6 @@
 """Extraction tasks and the parameter-level extraction draft."""
 import hashlib
+import json
 import re
 import uuid
 from pathlib import Path
@@ -11,7 +12,7 @@ from .catalog import load_catalog
 from .common import APIError, body, confirmed, integer, ok, pagination, text
 from .db import get_db, log, utc_now
 from .normalization import normalize_component
-from .sources import check_xlsx, validate_url
+from .sources import check_xlsx, table_records, validate_url
 
 bp = Blueprint("tasks", __name__, url_prefix="/api/tasks")
 
@@ -123,6 +124,22 @@ def component_payload(db, task):
     }
 
 
+def _warnings_for_task(db, task_id):
+    row = db.execute(
+        "SELECT detail FROM operation_log WHERE target_type='task' AND target_id=? "
+        "AND action IN ('create','extracted') ORDER BY log_id DESC LIMIT 1",
+        (task_id,),
+    ).fetchone()
+    if row is None or not row["detail"]:
+        return []
+    try:
+        detail = json.loads(row["detail"])
+    except (TypeError, ValueError):
+        return []
+    warnings = detail.get("warnings") if isinstance(detail, dict) else None
+    return warnings if isinstance(warnings, list) else []
+
+
 def serialize_task(row, detail=False):
     db = get_db()
     counts = _review_counts(db, row["task_id"])
@@ -148,9 +165,9 @@ def serialize_task(row, detail=False):
         "finished_time": row["finished_time"],
         **counts,
     }
+    result["warnings"] = _warnings_for_task(db, row["task_id"])
     if detail:
-        result["result"] = {"components": [component_payload(db, row)]}
-        result["warnings"] = []
+        result["result"] = {"components": [component_payload(db, row)], "warnings": result["warnings"]}
         result["audit_history"] = [
             dict(item)
             for item in db.execute(
@@ -203,7 +220,17 @@ def _write_params(db, task_id, component):
         )
 
 
-def _insert_task(db, user_id, source_type, source_location, source_hash, component, component_id=None, status="success"):
+def _insert_task(
+    db,
+    user_id,
+    source_type,
+    source_location,
+    source_hash,
+    component,
+    component_id=None,
+    status="success",
+    warnings=None,
+):
     cursor = db.execute(
         "INSERT INTO extraction_task"
         "(user_id,component_id,source_type,source_location,source_hash,extracted_model,"
@@ -226,7 +253,14 @@ def _insert_task(db, user_id, source_type, source_location, source_hash, compone
     task_id = cursor.lastrowid
     if status == "success":
         _write_params(db, task_id, component)
-    log(db, user_id, "create", "task", task_id, {"source_type": source_type})
+    log(
+        db,
+        user_id,
+        "create",
+        "task",
+        task_id,
+        {"source_type": source_type, "warnings": warnings or []},
+    )
     return task_id
 
 
@@ -261,6 +295,7 @@ def create_task(data, component_id=None):
             component,
             component_id,
             status="success",
+            warnings=component.get("warnings"),
         )
     return db.execute("SELECT * FROM extraction_task WHERE task_id=?", (task_id,)).fetchone()
 
@@ -340,15 +375,67 @@ def upload():
             if b"\x00" in raw:
                 raise APIError("Invalid CSV content")
         db = get_db()
+        source_type = types[extension]
+        source_hash = hashlib.sha256(raw).hexdigest()
+
+        if source_type in ("csv", "excel"):
+            records = table_records(destination, source_type)
+            if not 1 <= len(records) <= 1000:
+                raise APIError("Import must contain 1-1000 component rows")
+            catalog = load_catalog(db)
+            context = {
+                "type": source_type,
+                "location": str(destination),
+                "filename": original,
+                "sha256": source_hash,
+            }
+            components = []
+            for index, record in enumerate(records, 1):
+                try:
+                    component = normalize_component(record, catalog, context, False)
+                except APIError as exc:
+                    raise APIError(f"Row {index}: {exc.message}")
+                if not component.get("model") or not component.get("manufacturer") or not component.get("category"):
+                    raise APIError(f"Row {index}: model, manufacturer and category are required")
+                components.append(component)
+            with db:
+                tasks = []
+                for component in components:
+                    task_id = _insert_task(
+                        db,
+                        g.user["user_id"],
+                        source_type,
+                        str(destination),
+                        source_hash,
+                        component,
+                        warnings=component.get("warnings"),
+                    )
+                    tasks.append(
+                        serialize_task(
+                            db.execute(
+                                "SELECT * FROM extraction_task WHERE task_id=?", (task_id,)
+                            ).fetchone()
+                        )
+                    )
+                log(
+                    db,
+                    g.user["user_id"],
+                    "upload_batch",
+                    "task",
+                    None,
+                    {"filename": original, "count": len(tasks), "source_type": source_type},
+                )
+            return ok({"tasks": tasks, "count": len(tasks)}, 201)
+
         with db:
             cursor = db.execute(
                 "INSERT INTO extraction_task"
                 "(user_id,source_type,source_location,source_hash,status) VALUES(?,?,?,?, 'pending')",
                 (
                     g.user["user_id"],
-                    types[extension],
+                    source_type,
                     str(destination),
-                    hashlib.sha256(raw).hexdigest(),
+                    source_hash,
                 ),
             )
             log(
@@ -414,13 +501,17 @@ def retry(task_id):
 
 
 @bp.delete("/<int:task_id>")
-@login_required("admin")
+@login_required()
 def delete(task_id):
     confirmed(body())
     db = get_db()
     with db:
         db.execute("BEGIN IMMEDIATE")
-        task_access(task_id)
+        row = task_access(task_id)
+        if g.user["role"] not in ("admin", "user"):
+            raise APIError("Only the task owner or an administrator may delete a task", 403)
+        if row["status"] == "processing":
+            raise APIError("A processing task cannot be deleted", 409)
         audit = db.execute(
             "SELECT 1 FROM audit_log a JOIN extraction_param ep "
             "ON ep.extraction_param_id=a.extraction_param_id WHERE ep.task_id=? LIMIT 1",

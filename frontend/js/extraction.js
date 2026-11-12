@@ -134,7 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
             data.task_id ??
             data.id ??
             data.task?.task_id ??
-            data.task?.id
+            data.task?.id ??
+            data.tasks?.[0]?.task_id ??
+            data.tasks?.[0]?.id
         );
 
     }
@@ -188,8 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("retryTask").hidden = true;
 
+        const batchCount =
+            Number(result.data?.count ?? result.data?.tasks?.length ?? 1);
+
         document.getElementById("pollMessage").textContent =
-            "Task created successfully. Waiting for background processing...";
+            batchCount > 1
+                ? `${batchCount} extraction tasks created. Showing task ${taskId}; open Task Management to see all rows.`
+                : "Task created successfully. Waiting for background processing...";
 
         taskPanel.scrollIntoView({
             behavior: "smooth"
@@ -568,7 +575,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             showMessage(
                 "fileMessage",
-                "File uploaded successfully. Task created.",
+                "File uploaded successfully. Extraction task(s) created.",
                 "success"
             );
 

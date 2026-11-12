@@ -243,7 +243,7 @@ def normalize_component(raw, catalog, source=None, allow_missing_unit=True):
             "value_num": None,
             "value_text": value_text,
             "unit": None,
-            "confidence": None,
+            "confidence": 0.5,
             "source": {"page": source_page, "snippet": snippet[:4000]},
         })
 

@@ -109,24 +109,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         const body = document.getElementById("pendingBody");
         body.innerHTML = "";
         document.getElementById("reviewCount").textContent =
-            `${total} pending task(s)`;
+            `${total} pending parameter(s)`;
 
         if (!items.length) {
-            body.innerHTML = '<tr><td colspan="7">No pending reviews found.</td></tr>';
+            body.innerHTML = '<tr><td colspan="7">No pending parameters found.</td></tr>';
             return;
         }
 
-        items.forEach(task => {
+        items.forEach(item => {
             const row = document.createElement("tr");
-            const components = componentsOf(task);
-            const first = components[0] || {};
             const values = [
-                taskId(task),
-                getSourceLabel(task.source_type),
-                first.model || task.extracted_model || "-",
-                first.manufacturer || task.extracted_manufacturer || "-",
-                `${task.pending_count ?? 0} / ${task.param_count ?? 0}`,
-                formatDate(task.created_time)
+                item.task_id,
+                item.display_name || item.canonical_name || item.raw_name,
+                item.raw_value,
+                `${getSourceLabel(item.source_type)} · ${safeText(item.source_location)}`,
+                item.confidence ?? "-",
+                item.source_page ?? "-"
             ];
             values.forEach(value => {
                 const cell = document.createElement("td");
@@ -137,8 +135,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const actionCell = document.createElement("td");
             const button = document.createElement("button");
             button.className = "primary-button";
-            button.textContent = "Review";
-            button.addEventListener("click", () => openReview(taskId(task)));
+            button.textContent = "Review Task";
+            button.addEventListener("click", () => openReview(item.task_id));
             actionCell.appendChild(button);
             row.appendChild(actionCell);
             body.appendChild(row);
@@ -148,10 +146,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function loadReviews() {
         showMessage("listMessage", "");
         document.getElementById("pendingBody").innerHTML =
-            '<tr><td colspan="7">Loading reviews...</td></tr>';
+            '<tr><td colspan="7">Loading pending parameters...</td></tr>';
         const params = new URLSearchParams({ page: currentPage, page_size: 20 });
         try {
-            const response = await apiRequest(`/api/audit/tasks?${params.toString()}`);
+            const response = await apiRequest(`/api/audit/params?${params.toString()}`);
             const data = response.data || {};
             const items = data.items || [];
             const total = Number(data.total ?? items.length);
@@ -165,7 +163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("nextPage").disabled = currentPage >= totalPages;
         } catch (error) {
             document.getElementById("pendingBody").innerHTML =
-                '<tr><td colspan="7">Unable to load pending reviews.</td></tr>';
+                '<tr><td colspan="7">Unable to load pending parameters.</td></tr>';
             showMessage("listMessage", error.message, "error");
             handleAuthError(error);
         }
@@ -347,12 +345,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
+    function renderWarningsUi(warnings) {
+        const container = document.getElementById("reviewWarnings");
+        container.innerHTML = "";
+        if (!Array.isArray(warnings) || !warnings.length) return;
+        const heading = document.createElement("h3");
+        heading.textContent = "Extraction Warnings";
+        container.appendChild(heading);
+        warnings.forEach(warning => {
+            const p = document.createElement("p");
+            p.className = "task-warning-item";
+            p.textContent = typeof warning === "string" ? warning : JSON.stringify(warning);
+            container.appendChild(p);
+        });
+    }
+
     function renderTask(task) {
         currentTask = task;
         currentTaskId = taskId(task);
         document.getElementById("reviewPanel").hidden = false;
         document.getElementById("reviewTaskId").textContent = `#${currentTaskId}`;
         renderTaskInfo(task);
+        renderWarningsUi(task.warnings || task.result?.warnings || []);
         renderIdentity(task);
         const component = componentsOf(task)[0] || {};
         renderParameters(component.parameters || []);

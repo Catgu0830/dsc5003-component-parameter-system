@@ -1,11 +1,12 @@
-﻿"""Admin APIs for users, manufacturers and operation logs."""
+"""Admin APIs for users, manufacturers and operation logs."""
 import json
+import sqlite3
 
 from flask import Blueprint, g, request
 from werkzeug.security import generate_password_hash
 
 from .auth import login_required, public_user
-from .common import APIError, body, ok, pagination, text
+from .common import APIError, body, confirmed, ok, pagination, text
 from .db import get_db, log
 
 bp = Blueprint("admin", __name__, url_prefix="/api")
@@ -128,6 +129,26 @@ def create_manufacturer():
 @login_required("admin", "auditor")
 def update_manufacturer(manufacturer_id):
     return save_manufacturer(manufacturer_id)
+
+
+@bp.delete("/manufacturers/<int:manufacturer_id>")
+@login_required("admin")
+def delete_manufacturer(manufacturer_id):
+    confirmed(body())
+    db = get_db()
+    with db:
+        db.execute("BEGIN IMMEDIATE")
+        row = db.execute(
+            "SELECT * FROM manufacturer WHERE manufacturer_id=?", (manufacturer_id,)
+        ).fetchone()
+        if row is None:
+            raise APIError("Manufacturer not found", 404)
+        try:
+            db.execute("DELETE FROM manufacturer WHERE manufacturer_id=?", (manufacturer_id,))
+        except sqlite3.IntegrityError:
+            raise APIError("Manufacturer is referenced by components and cannot be deleted", 409)
+        log(db, g.user["user_id"], "delete_manufacturer", "component", manufacturer_id, {"name": row["name"]})
+    return ok()
 
 
 def save_manufacturer(mid=None):
